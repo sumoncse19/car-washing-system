@@ -7,14 +7,15 @@
   "author": "sumoncse19 <sumoncse19@gmail.com>",
   "license": "MIT",
   "scripts": {
-    "start": "node ./dist/index.js",
-    "start:prod": "node ./dist/index.js",
-    "start:dev": "ts-node-dev --respawn --transpile-only src/index.ts",
+    "start": "node ./dist/server.js",
+    "start:prod": "nodemon ./dist/server.js",
+    "start:dev": "ts-node-dev --respawn --transpile-only src/server",
     "build": "tsc",
-    "lint": "eslint src --ignore-pattern .eslintignore",
-    "lint:fix": "npx eslint src --fix",
-    "prettier": "prettier --write \"./src/**/*.+(js|ts|json)\" ",
-    "prettier:fix": "npx prettier --write src",
+    "lint": "npx eslint .",
+    "lint:fix": "npx eslint . --fix",
+    "prettier": "prettier --ignore-path .gitignore --write \"./src/**/*.+(js|ts|json)\"",
+    "prettier:fix": "prettier --write src",
+    "lint-prettier": "npm run lint && npm run prettier",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "dependencies": {

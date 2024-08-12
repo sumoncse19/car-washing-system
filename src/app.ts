@@ -11,7 +11,7 @@ app.use(express.json());
 app.use(cors());
 
 app.get("/", (req: Request, res: Response) => {
-  res.send(`Server health is good and running well`);
+  res.send(`Your car washing system server is running`);
 });
 app.use("/api", router);
 app.use(globalErrorHandler);
