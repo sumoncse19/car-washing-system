@@ -2,9 +2,10 @@
 
 ## Project Overview
 
-The Car Wash Booking System is a backend service designed to handle user bookings for car wash services. It includes functionalities for managing users, services, slots, and bookings. The project is built using Express.js, Mongoose, Zod for validation, and Yarn as the package manager.
+The Car Wash Booking System is a backend service designed to handle user bookings for car wash services. It includes functionalities for managing users, services, slots, and bookings. The project is built using `Express.js`, `Mongoose`, `Zod` for validation, `Yarn` as the package manager and here used `Husky` for checking pre-commit.
 
 ### Live Url: [Click Here](https://car-washing-system-sumoncse.vercel.app/)
+
 ### Project Overview: [Click Here](https://drive.google.com/file/d/1SNTlie_WHGMjlBV-ePeofyrCsQVfA89C/view?usp=sharing)
 
 ## Features
@@ -44,7 +45,7 @@ yarn install
 Create a `.env` file in the root of the project and configure the following environment variables:
 
 ```env
-PORT=3000
+PORT=5000
 DATABASE_URL=mongodb://localhost:27017/car-wash
 BCRYPT_SALT_ROUNDS=12
 JWT_ACCESS_SECRET=your_jwt_secret
@@ -69,7 +70,7 @@ To start the server in development mode:
 yarn dev
 ```
 
-The server should now be running at `http://localhost:3000`.
+The server should now be running at `http://localhost:5000`.
 
 ### 6. Running the Project in Production
 
@@ -130,6 +131,5 @@ Contributions are welcome! Please follow the [contribution guidelines](CONTRIBUT
 This project is licensed under the MIT License. See the [LICENSE](LICENSE) file for details.
 
 ```
-
 This `README.md` provides a comprehensive guide for setting up, running, and understanding the project.
 ```
