@@ -1,42 +1,42 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import { Response } from "express";
+import { Response } from 'express'
 
 export interface APIResponseSuccess {
-  success: boolean;
-  statusCode: number;
-  message: string;
-  token?: string;
-  refreshToken?: string;
-  data?: any;
+  success: boolean
+  statusCode: number
+  message: string
+  token?: string
+  refreshToken?: string
+  data?: any
 }
 
 export interface APIResponseError {
-  success: false;
-  statusCode: number;
-  message: string;
-  errors?: any[];
-  stack?: string;
+  success: false
+  statusCode: number
+  message: string
+  errors?: any[]
+  stack?: string
 }
 
-export type APIResponse = APIResponseSuccess | APIResponseError;
+export type APIResponse = APIResponseSuccess | APIResponseError
 
 function sendAPIResponse(res: Response, response: APIResponse) {
-  res.status(response.statusCode).json(response);
+  res.status(response.statusCode).json(response)
 }
 
 export function SUCCESS(
   res: Response,
   statusCode: number = 200,
   message: string,
-  data?: any
+  data?: any,
 ) {
   const apiResponse: APIResponseSuccess = {
     success: statusCode === 404 ? false : true,
     statusCode,
     message,
     data,
-  };
-  sendAPIResponse(res, apiResponse);
+  }
+  sendAPIResponse(res, apiResponse)
 }
 
 export function SUCCESS_LOGIN(
@@ -45,7 +45,7 @@ export function SUCCESS_LOGIN(
   message: string,
   token?: string,
   refreshToken?: string,
-  data?: any
+  data?: any,
 ) {
   const apiResponse: APIResponseSuccess = {
     success: true,
@@ -54,8 +54,8 @@ export function SUCCESS_LOGIN(
     token,
     refreshToken,
     data,
-  };
-  sendAPIResponse(res, apiResponse);
+  }
+  sendAPIResponse(res, apiResponse)
 }
 
 export function ERROR(
@@ -63,7 +63,7 @@ export function ERROR(
   statusCode: number = 400,
   message: string,
   errors?: any[],
-  stack?: string
+  stack?: string,
 ) {
   const apiResponse: APIResponseError = {
     success: false,
@@ -71,6 +71,6 @@ export function ERROR(
     message,
     errors,
     stack,
-  };
-  sendAPIResponse(res, apiResponse);
+  }
+  sendAPIResponse(res, apiResponse)
 }

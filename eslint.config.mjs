@@ -1,23 +1,30 @@
+// @ts-check
+
 import globals from "globals";
-import pluginJs from "@eslint/js";
+import eslint from "@eslint/js";
 import tseslint from "typescript-eslint";
 
-
-export default [
-  { files: ["**/*.{js,mjs,cjs,ts}"] },
-  { languageOptions: { globals: { process: true, console: true } } },
-  pluginJs.configs.recommended,
+export default tseslint.config(
+  eslint.configs.recommended,
   ...tseslint.configs.recommended,
+  { files: ["**/*.{js,mjs,cjs,ts}"] },
   {
-    rules: {
-      "no-unused-vars": "error",
-      "no-undef": 2,
-      "no-unused-expressions": "error",
-      "prefer-const": "error",
-      "no-console": 1,
+    languageOptions: {
+      globals: {
+        ...globals.node,
+      },
     },
   },
   {
-    ignores: ["dist/", "node_modules/", "config"],
+    rules: {
+      "no-unused-vars": "error",
+      "no-unused-expressions": "error",
+      "prefer-const": "error",
+      "no-console": "warn",
+      "no-undef": "error",
+    },
   },
-];
+  {
+    ignores: [".env", "node_modules/**", "dist/**"], // Add your ignore patterns here
+  }
+);

@@ -1,38 +1,38 @@
-import express from "express";
-import { ServiceControllers } from "./service.controller";
-import validateRequest from "../../middleware/validateRequest";
-import { createServiceSchema, updateServiceSchema } from "./service.schema";
-import requireAuth from "../../middleware/requireAuth";
-import { Roles } from "../shared/user.enumeration";
-import { slotSchema } from "../slot/slot.schema";
-import { SlotControllers } from "../slot/slot.controller";
+import express from 'express'
+import { ServiceControllers } from './service.controller'
+import validateRequest from '../../middleware/validateRequest'
+import { createServiceSchema, updateServiceSchema } from './service.schema'
+import requireAuth from '../../middleware/requireAuth'
+import { Roles } from '../shared/user.enumeration'
+import { slotSchema } from '../slot/slot.schema'
+import { SlotControllers } from '../slot/slot.controller'
 
-const router = express.Router();
+const router = express.Router()
 
 router.post(
-  "/",
+  '/',
   validateRequest(createServiceSchema),
   requireAuth(Roles.ADMIN),
-  ServiceControllers.createService
-);
+  ServiceControllers.createService,
+)
 router.post(
-  "/slots",
+  '/slots',
   requireAuth(Roles.ADMIN),
   validateRequest(slotSchema),
-  SlotControllers.createSlot
-);
-router.get("/:id", ServiceControllers.getServiceById);
-router.get("/", ServiceControllers.getAllServices);
+  SlotControllers.createSlot,
+)
+router.get('/:id', ServiceControllers.getServiceById)
+router.get('/', ServiceControllers.getAllServices)
 router.put(
-  "/:id",
+  '/:id',
   validateRequest(updateServiceSchema),
   requireAuth(Roles.ADMIN),
-  ServiceControllers.updateService
-);
+  ServiceControllers.updateService,
+)
 router.delete(
-  "/:id",
+  '/:id',
   requireAuth(Roles.ADMIN),
-  ServiceControllers.deleteService
-);
+  ServiceControllers.deleteService,
+)
 
-export const ServiceRoutes = router;
+export const ServiceRoutes = router

@@ -1,19 +1,16 @@
-import express from "express";
-import { UserControllers } from "./user.controller";
+import express from 'express'
+import { UserControllers } from './user.controller'
 
-import { registerSchema, loginSchema } from "./user.schema";
-import validateRequest from "../../middleware/validateRequest";
+import { registerSchema, loginSchema } from './user.schema'
+import validateRequest from '../../middleware/validateRequest'
 
-const router = express.Router();
+const router = express.Router()
 
 router.post(
-  "/signup",
+  '/signup',
   validateRequest(registerSchema),
-  UserControllers.registerUser
-);
-router.post("/login",
-    validateRequest(loginSchema),
-    UserControllers.loginUser
-);
+  UserControllers.registerUser,
+)
+router.post('/login', validateRequest(loginSchema), UserControllers.loginUser)
 
-export const UserRoutes = router;
+export const UserRoutes = router

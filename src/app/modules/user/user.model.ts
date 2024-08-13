@@ -1,6 +1,6 @@
-import { Schema, model } from "mongoose";
-import { IUser } from "./user.interface";
-import { Roles } from "../shared/user.enumeration";
+import { Schema, model } from 'mongoose'
+import { IUser } from './user.interface'
+import { Roles } from '../shared/user.enumeration'
 
 const userSchema = new Schema<IUser>(
   {
@@ -14,13 +14,13 @@ const userSchema = new Schema<IUser>(
     updatedAt: { type: Date, default: Date.now },
     isDeleted: { type: Boolean, default: false },
   },
-  { timestamps: true }
-);
+  { timestamps: true },
+)
 
 userSchema.methods.toJSON = function () {
-  const userObject = this.toObject();
-  delete userObject.password;
-  return userObject;
-};
+  const userObject = this.toObject()
+  delete userObject.password
+  return userObject
+}
 
-export const UserModel = model<IUser>("User", userSchema);
+export const UserModel = model<IUser>('User', userSchema)
