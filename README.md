@@ -5,6 +5,7 @@
 The Car Wash Booking System is a backend service designed to handle user bookings for car wash services. It includes functionalities for managing users, services, slots, and bookings. The project is built using Express.js, Mongoose, Zod for validation, and Yarn as the package manager.
 
 ### Live Url: [Click Here](https://car-washing-system-sumoncse.vercel.app/)
+### Project Overview: [Click Here](https://drive.google.com/file/d/1SNTlie_WHGMjlBV-ePeofyrCsQVfA89C/view?usp=sharing)
 
 ## Features
 
