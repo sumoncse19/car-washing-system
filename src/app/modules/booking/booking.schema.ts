@@ -3,10 +3,10 @@ import { z } from "zod";
 import { Vehicle } from "./booking.enumeration";
 
 export const BookingSchema = z.object({
-  serviceId: z.string().refine((val) => Types.ObjectId.isValid(val), {
+  service: z.string().refine((val) => Types.ObjectId.isValid(val), {
     message: "Invalid service ID",
   }),
-  slotId: z.string().refine((val) => Types.ObjectId.isValid(val), {
+  slot: z.string().refine((val) => Types.ObjectId.isValid(val), {
     message: "Invalid slot ID",
   }),
   vehicleType: z.nativeEnum(Vehicle),

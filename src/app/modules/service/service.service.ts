@@ -15,6 +15,11 @@ const getAllServicesFromDB = async () => {
 };
 
 const updateServiceInDB = async (id: string, updateData: Partial<IService>) => {
+  const serviceExist = await ServiceModel.findById(id);
+  if (!serviceExist) {
+    throw new Error("Service not found");
+  }
+
   return await ServiceModel.findByIdAndUpdate(id, updateData, {
     new: true,
   });

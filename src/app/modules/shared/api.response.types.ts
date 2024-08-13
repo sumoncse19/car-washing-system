@@ -2,7 +2,7 @@
 import { Response } from "express";
 
 export interface APIResponseSuccess {
-  success: true;
+  success: boolean;
   statusCode: number;
   message: string;
   token?: string;
@@ -31,7 +31,7 @@ export function SUCCESS(
   data?: any
 ) {
   const apiResponse: APIResponseSuccess = {
-    success: true,
+    success: statusCode === 404 ? false : true,
     statusCode,
     message,
     data,

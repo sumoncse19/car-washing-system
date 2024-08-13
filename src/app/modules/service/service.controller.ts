@@ -17,7 +17,12 @@ const createService = async (req: Request, res: Response) => {
 const getServiceById = async (req: Request, res: Response) => {
   try {
     const service = await ServiceServices.getServiceByIdFromDB(req.params.id);
-    SUCCESS(res, httpStatus.OK, "Service retrieved successfully", service);
+    SUCCESS(
+      res,
+      service !== null ? httpStatus.OK : httpStatus.NOT_FOUND,
+      service !== null ? "Service retrieved successfully" : "No Data Found",
+      service
+    );
   } catch (error: any) {
     ERROR(res, httpStatus.INTERNAL_SERVER_ERROR, "Failed to retrieve Service", [
       error.message,
@@ -28,7 +33,12 @@ const getServiceById = async (req: Request, res: Response) => {
 const getAllServices = async (req: Request, res: Response) => {
   try {
     const services = await ServiceServices.getAllServicesFromDB();
-    SUCCESS(res, httpStatus.OK, "Services retrieved successfully", services);
+    SUCCESS(
+      res,
+      services.length > 0 ? httpStatus.OK : httpStatus.NOT_FOUND,
+      services.length > 0 ? "Services retrieved successfully" : "No Data Found",
+      services
+    );
   } catch (error: any) {
     ERROR(
       res,

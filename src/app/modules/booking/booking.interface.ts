@@ -2,9 +2,9 @@ import { Types } from "mongoose";
 import { Vehicle } from "./booking.enumeration";
 
 export interface IBooking {
-  customerId: Types.ObjectId;
-  serviceId: Types.ObjectId;
-  slotId: Types.ObjectId;
+  customer: Types.ObjectId;
+  service: Types.ObjectId;
+  slot: Types.ObjectId;
   vehicleType: Vehicle;
   vehicleBrand: string;
   vehicleModel: string;

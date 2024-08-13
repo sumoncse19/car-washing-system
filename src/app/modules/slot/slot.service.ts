@@ -3,12 +3,12 @@ import { ServiceModel } from "../service/service.model";
 import { ISlot } from "./slot.interface";
 
 const createSlotsIntoDB = async (
-  serviceId: string,
+  service: string,
   date: string,
   startTime: string,
   endTime: string
 ): Promise<ISlot[]> => {
-  const serviceData = await ServiceModel.findById(serviceId);
+  const serviceData = await ServiceModel.findById(service);
   if (!serviceData) {
     throw new Error("Service not found");
   }
@@ -35,7 +35,7 @@ const createSlotsIntoDB = async (
     const slotEndMinute = slotEndMinutes % 60;
 
     slots.push({
-      service: serviceId,
+      service,
       date,
       startTime: `${slotStartHour.toString().padStart(2, "0")}:${slotStartMinute.toString().padStart(2, "0")}`,
       endTime: `${slotEndHour.toString().padStart(2, "0")}:${slotEndMinute.toString().padStart(2, "0")}`,
@@ -49,7 +49,7 @@ const createSlotsIntoDB = async (
 
 const getAvailableSlotsFromDB = async (
   date?: string,
-  serviceId?: string
+  service?: string
 ): Promise<ISlot[]> => {
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const query: Record<string, any> = { isBooked: "available" };
@@ -58,11 +58,13 @@ const getAvailableSlotsFromDB = async (
     query.date = date;
   }
 
-  if (serviceId) {
-    query.service = serviceId;
+  if (service) {
+    query.service = service;
   }
 
-  return await SlotModel.find(query);
+  const AvailableSlot = await SlotModel.find(query).populate("service");
+
+  return AvailableSlot;
 };
 
 export const SlotServices = {

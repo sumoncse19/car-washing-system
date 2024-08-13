@@ -49,8 +49,7 @@ const requireAuth = (...requiredRoles: Roles[]) => {
         return ERROR(
           res,
           httpStatus.UNAUTHORIZED,
-          "You are not authorized!",
-          []
+          "You have no access to this route"
         );
       }
 

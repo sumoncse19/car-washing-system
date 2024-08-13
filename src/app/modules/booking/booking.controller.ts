@@ -8,7 +8,7 @@ const bookService = async (req: Request, res: Response) => {
   try {
     const bookingData = req.body,
       customerId = req.user.userId;
-    bookingData.customerId = customerId;
+    bookingData.customer = customerId;
     const booking = await BookingServices.createBookingIntoDB(bookingData);
     SUCCESS(res, httpStatus.CREATED, "Booking successful", booking);
   } catch (error: any) {
@@ -26,8 +26,10 @@ const getAllBookings = async (req: Request, res: Response) => {
     const bookings = await BookingServices.getAllBookingsFromDB();
     SUCCESS(
       res,
-      httpStatus.OK,
-      "All bookings retrieved successfully",
+      bookings.length > 0 ? httpStatus.OK : httpStatus.NOT_FOUND,
+      bookings.length > 0
+        ? "All bookings retrieved successfully"
+        : "No Data Found",
       bookings
     );
   } catch (error: any) {
@@ -46,8 +48,10 @@ const getUserBookings = async (req: Request, res: Response) => {
     const bookings = await BookingServices.getUserBookingsFromDB(userId);
     SUCCESS(
       res,
-      httpStatus.OK,
-      "User bookings retrieved successfully",
+      bookings.length > 0 ? httpStatus.OK : httpStatus.NOT_FOUND,
+      bookings.length > 0
+        ? "User bookings retrieved successfully"
+        : "No Data Found",
       bookings
     );
   } catch (error: any) {

@@ -3,11 +3,7 @@ import { ISlot } from "./slot.interface";
 
 const slotSchema = new Schema<ISlot>(
   {
-    service: {
-      type: Schema.Types.ObjectId,
-      ref: "Service",
-      required: true,
-    },
+    service: { type: Schema.Types.ObjectId, ref: "Service", required: true },
     date: {
       type: String,
       required: true,
